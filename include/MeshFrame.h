@@ -22,7 +22,7 @@ class Deduplicator {
 };
 inline Result forward(Frame& f){if(!valid(f))return Result::Invalid;if(f.ttl<=1)return Result::Expired;--f.ttl;return Result::Accepted;}
 inline size_t encode(const Frame& f,uint8_t* out,size_t cap){
- if(!valid(f)||!out||cap<size_t(f.length)+11)return 0;
+ if(!valid(f)||!out||cap<size_t(f.length)+12)return 0;
  out[0]=0xA5;out[1]=1;
  out[2]=uint8_t(f.origin>>8);out[3]=uint8_t(f.origin);
  out[4]=uint8_t(f.destination>>8);out[5]=uint8_t(f.destination);
